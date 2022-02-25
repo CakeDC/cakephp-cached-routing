@@ -5,6 +5,20 @@ After deprecation of the cache option in RoutingMiddleware, the feature is extra
 you still want to use it to speed up your routes loading when your routes do not include 
 non-serializable contents.
 
+This plugin provides a replacement for the RoutingMiddleware to allow caching of the route collection.
+
+Installation
+------------
+
+* `composer require cakedc/cakephp-cached-routing`
+* Replace RoutingMiddleware reference in your `Application::middleware` function to
+
+```php
+    // ...
+    ->add(new \CakeDC\CachedRouting\Routing\Middleware\CachedRoutingMiddleware($this, '_cake_routes_'))
+    // ...
+```
+
 Requirements
 ------------
 
