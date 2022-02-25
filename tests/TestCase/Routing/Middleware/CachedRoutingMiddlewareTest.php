@@ -14,13 +14,10 @@ declare(strict_types=1);
 namespace CakeDC\CachedRouting\Test\TestCase\Routing\Middleware;
 
 use Cake\Cache\Cache;
-use Cake\Core\Configure;
-use Cake\Http\Response;
 use Cake\Http\ServerRequestFactory;
 use Cake\Routing\Exception\FailedRouteCacheException;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\RouteCollection;
-use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 use CakeDC\CachedRouting\Routing\Middleware\CachedRoutingMiddleware;
 use CakeDC\CachedRouting\Test\App\Application;

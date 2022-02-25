@@ -11,10 +11,6 @@ declare(strict_types=1);
  * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-use Cake\Core\Configure;
-use Cake\Mailer\Email;
-use Cake\Utility\Security;
-
 $findRoot = function () {
     $root = dirname(__DIR__);
     if (is_dir($root . '/vendor/cakephp/cakephp')) {
