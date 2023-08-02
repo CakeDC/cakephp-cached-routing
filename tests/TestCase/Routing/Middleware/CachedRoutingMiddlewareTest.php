@@ -2,12 +2,12 @@
 declare(strict_types=1);
 
 /**
- * Copyright 2013 - 2022, Cake Development Corporation (https://www.cakedc.com)
+ * Copyright 2013 - 2023, Cake Development Corporation (https://www.cakedc.com)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright Copyright 2013 - 2022, Cake Development Corporation (https://www.cakedc.com)
+ * @copyright Copyright 2013 - 2023, Cake Development Corporation (https://www.cakedc.com)
  * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
@@ -15,10 +15,10 @@ namespace CakeDC\CachedRouting\Test\TestCase\Routing\Middleware;
 
 use Cake\Cache\Cache;
 use Cake\Http\ServerRequestFactory;
-use Cake\Routing\Exception\FailedRouteCacheException;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\RouteCollection;
 use Cake\TestSuite\TestCase;
+use CakeDC\CachedRouting\Routing\Exception\FailedRouteCacheException;
 use CakeDC\CachedRouting\Routing\Middleware\CachedRoutingMiddleware;
 use CakeDC\CachedRouting\Test\App\Application;
 use CakeDC\CachedRouting\Test\App\TestRequestHandler;
