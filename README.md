@@ -1,8 +1,8 @@
 CakeDC Cached Routing
 =====================
 
-After deprecation of the cache option in RoutingMiddleware in CakePHP 4.4+ and removal in CakePHP 5.0, the feature is 
-extracted here in case you still want to use it to speed up your routes loading when your routes do not include 
+After deprecation of the cache option in RoutingMiddleware in CakePHP 4.4+ and removal in CakePHP 5.0, the feature is
+extracted here in case you still want to use it to speed up your routes loading when your routes do not include
 non-serializable contents.
 
 This plugin provides a replacement for the RoutingMiddleware to allow caching of the route collection.
