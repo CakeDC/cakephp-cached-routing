@@ -18,6 +18,7 @@ Installation
     ->add(new \CakeDC\CachedRouting\Routing\Middleware\CachedRoutingMiddleware($this, '_cake_routes_'))
     // ...
 ```
+* Add the `_cake_routes_` cache settings in your `config/app_local.php`.
 
 Requirements
 ------------
