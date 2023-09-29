@@ -3,8 +3,8 @@ name: CI
 on:
   push:
     branches:
-      - 1.next cake4
-      - 2.next cake5
+      - 1.next-cake4
+      - 2.next-cake5
   pull_request:
     branches:
       - '*'
