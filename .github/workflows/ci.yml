@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - 1.next-cake4
-      - 2.next-cake5
+      - 2.next
   pull_request:
     branches:
       - '*'

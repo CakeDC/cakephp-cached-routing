@@ -6,5 +6,7 @@ parameters:
 	checkMissingIterableValueType: false
 	checkGenericClassInNonGenericObjectType: false
 	treatPhpDocTypesAsCertain: false
+	paths:
+		- src/
 	bootstrapFiles:
 		- tests/bootstrap.php
