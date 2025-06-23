@@ -3,8 +3,6 @@ includes:
 
 parameters:
 	level: 8
-	checkMissingIterableValueType: false
-	checkGenericClassInNonGenericObjectType: false
 	treatPhpDocTypesAsCertain: false
 	paths:
 		- src/

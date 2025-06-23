@@ -75,9 +75,14 @@ class CachedRoutingMiddleware extends RoutingMiddleware
     {
         if (Cache::enabled() && $this->cacheConfig !== null) {
             try {
-                return Cache::remember(static::ROUTE_COLLECTION_CACHE_KEY, function () {
+                $cached = Cache::remember(static::ROUTE_COLLECTION_CACHE_KEY, function () {
                     return $this->prepareRouteCollection();
                 }, $this->cacheConfig);
+                if ($cached instanceof RouteCollection) {
+                    return $cached;
+                } else {
+                    Cache::delete(static::ROUTE_COLLECTION_CACHE_KEY, $this->cacheConfig);
+                }
             } catch (InvalidArgumentException $e) {
                 throw $e;
             } catch (Exception $e) {
@@ -86,7 +91,7 @@ class CachedRoutingMiddleware extends RoutingMiddleware
                     middleware or other unserializable settings in your routes. The original exception message can
                     show what type of object failed to serialize.',
                     null,
-                    $e
+                    $e,
                 );
             }
         }

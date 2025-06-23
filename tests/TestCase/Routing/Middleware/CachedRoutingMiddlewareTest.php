@@ -14,9 +14,11 @@ declare(strict_types=1);
 namespace CakeDC\CachedRouting\Test\TestCase\Routing\Middleware;
 
 use Cake\Cache\Cache;
+use Cake\Http\Response;
 use Cake\Http\ServerRequestFactory;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\RouteCollection;
+use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 use CakeDC\CachedRouting\Routing\Exception\FailedRouteCacheException;
 use CakeDC\CachedRouting\Routing\Middleware\CachedRoutingMiddleware;
@@ -75,5 +77,28 @@ class CachedRoutingMiddlewareTest extends TestCase
         $this->expectException(FailedRouteCacheException::class);
         $this->expectExceptionMessage('Unable to cache route collection.');
         $middleware->process($request, new TestRequestHandler());
+    }
+
+    /**
+     * Test that when cache returns a non-RouteCollection value, it gets deleted and a new RouteCollection is created.
+     */
+    public function testInvalidCachedValue(): void
+    {
+        $cacheConfigName = '_cake_router_';
+        Cache::setConfig($cacheConfigName, [
+            'engine' => 'File',
+            'path' => CACHE,
+        ]);
+
+        Cache::write(CachedRoutingMiddleware::ROUTE_COLLECTION_CACHE_KEY, 'not a route collection', $cacheConfigName);
+        $this->assertEquals('not a route collection', Cache::read(CachedRoutingMiddleware::ROUTE_COLLECTION_CACHE_KEY, $cacheConfigName));
+
+        $request = ServerRequestFactory::fromGlobals(['REQUEST_URI' => '/articles']);
+        $middleware = new CachedRoutingMiddleware(new Application(), $cacheConfigName);
+        $response = $middleware->process($request, new TestRequestHandler());
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertNull(Cache::read(CachedRoutingMiddleware::ROUTE_COLLECTION_CACHE_KEY, $cacheConfigName));
+        $this->assertInstanceOf(RouteCollection::class, Router::getRouteCollection());
     }
 }
