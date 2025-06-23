@@ -91,7 +91,7 @@ class CachedRoutingMiddleware extends RoutingMiddleware
                     middleware or other unserializable settings in your routes. The original exception message can
                     show what type of object failed to serialize.',
                     null,
-                    $e
+                    $e,
                 );
             }
         }
