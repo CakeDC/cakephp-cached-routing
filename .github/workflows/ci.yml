@@ -18,5 +18,26 @@ jobs:
     secrets: inherit
 
   cs-stan:
-    uses: cakephp/.github/.github/workflows/cs-stan.yml@5.x
-    secrets: inherit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, intl
+          coverage: none
+          tools: composer:v2
+
+      - name: Composer install
+        run: |
+          composer install --no-progress --prefer-dist --optimize-autoloader
+
+      - name: Install PHPStan
+        run: |
+          composer require --dev phpstan/phpstan
+
+      - name: Run phpstan
+        run: |
+          vendor/bin/phpstan analyse --error-format=github --configuration=phpstan.neon
